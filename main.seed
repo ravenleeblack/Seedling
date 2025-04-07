@@ -1,0 +1,34 @@
+universal start:
+{
+    .arch_32  
+    .end
+    .file_sect
+        extern: yield;
+    .end
+    .code_sect 
+        call main; 
+    .end
+} pass_arg: num_value[0];
+
+global main:
+{
+    .declare_sect
+        hold aisle: msg;
+    .end
+    .literal_sect
+        assign: msg = "Hello World!", hex_value[0x0A];
+    .end
+    .code_sect
+        move_aisle: edx, num_value[13];                
+        move_aisle: ecx, msg;
+        
+        move_aisle: ebx, num_value[1];
+        move_aisle: eax, num_value[4];
+        call_system;
+
+        move_aisle: ebx, num_value[0];
+        move_aisle: eax, num_value[1];
+        call_system;
+
+    .end
+} call yield;

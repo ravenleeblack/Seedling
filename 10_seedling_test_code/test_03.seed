@@ -1,0 +1,62 @@
+universal start:
+{
+    .arch_32  
+    .end
+    .code 
+       call main; 
+    .end
+};
+
+
+global main:
+{
+    .declare
+        hold aisle: msg;
+    .end
+    .literal
+        assign: msg = "Hello, World. Testing strand!",  hex_value[0x0A];
+    .end
+    .code
+        move_aisle: eax, msg;            
+        call main.strlen;
+
+        move_aisle: edx, eax; 
+        move_aisle: ecx, msg; 
+
+        move_aisle: ebx, num_value[1]; 
+        move_aisle: eax, num_value[4];    
+        call_system;
+
+        move_aisle: ebx, num_value[0];
+        move_aisle: eax, num_value[1];
+        call_system;
+    .end
+};
+
+
+local strlen:
+{
+    .code
+        push_aisle: ebx;            
+        move_aisle: ebx, eax;
+    .end
+} pass_arg: num_value[0];
+
+local_block next_char:
+{
+    .code
+        comp_den: address[eax], num_value[0];
+        jump_zero: finished;                   
+        inc_aisle: eax;                      
+        jump: next_char;                       
+    .end
+} pass_arg: num_value[0];
+
+
+local_block finished:
+{
+    .code
+        sub_aisle: eax, ebx; 
+        pop_aisle: ebx;
+    .end
+} pass_arg: ebx;

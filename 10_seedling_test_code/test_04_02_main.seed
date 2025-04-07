@@ -1,0 +1,32 @@
+universal start:
+{
+    .arch_32  
+    .end
+    .file
+        extern: yield;
+        extern: write;
+    .end
+    .code 
+       call main; 
+    .end
+};
+
+
+global main:
+{
+    .declare
+        hold aisle: msg_01;
+        hold aisle: msg_02;
+    .end
+    .literal
+        assign: msg_01 = "Welcome to Seedling!",  hex_value[0x0A];
+        assign: msg_02 = "Its getting there!",  hex_value[0x0A];
+    .end
+    .code
+        move_aisle: eax, msg_01;            
+        call write;
+
+        move_aisle: eax, msg_02;            
+        call write;
+    .end
+} call yield;
