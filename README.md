@@ -2,12 +2,7 @@
 
 Seedling is an x86-x64 assembler designed specifically for the Illeshian Compiler, part of the Illesian Suite. Unlike traditional assemblers that are section-based, Seedling adopts a unique scope-based approach to assembly programming.
 
-For more information check out the wiki!!
-
-[Seedling Home](https://github.com/ravenleeblack/Seedling/wiki)
-
 ## Overview
-
 
 Seedling is one component of the broader **Illesian Suite**, which comprises the following programs:
 - **Illeshian Driver**
@@ -30,5 +25,9 @@ make all
 
 ./seed -o -t -d -n main.seed yield.seed
 ```
+
+For more information check out the wiki!!
+
+[Seedling Home](https://github.com/ravenleeblack/Seedling/wiki)
 
 
