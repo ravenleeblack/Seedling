@@ -7,3 +7,5 @@ For more information check out the wiki!!
 [Seedling Home](https://github.com/ravenleeblack/Seedling/wiki)
 
 
+[How to Compile](https://github.com/ravenleeblack/Seedling/wiki/How-to-Compile)
+
