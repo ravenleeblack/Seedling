@@ -38,13 +38,16 @@ flags:
 ```
 -o: Output flag
 
--t: scope table flag - outputs the scope table variables or placeholders into a scope table that can be read in order to verify.
+-t: scope table flag - outputs the scope table variables or placeholders into a scope table that can
+ be read in order to verify.
 
 -d: debug flag**
 
 -n: nasm flag - currently outputs nasm in the backend so that it can be assembled down and linked.
 
--b: binary flag - Will eventually have a way to assemble down in to binary so that we can lin with rootling linker. If i ever make it that far.
+-b: binary flag - Will eventually have a way to assemble down in to binary so that we can lin with rootling
+linker. If i ever make it that far. Rootling doesnt exist yet. I need to get an actual version od seedling
+done first.
 ```
 main.seed yield.seed: Input files for assembly. A seedling file must have the ext .seed
 
