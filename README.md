@@ -13,7 +13,3 @@ For more information check out the wiki!!
 [Scope Structure](https://github.com/ravenleeblack/Seedling/wiki/Scope-Structure)
 
 [Syntax Structure](https://github.com/ravenleeblack/Seedling/wiki/Syntax-Structure)
-
-[Data Types](https://github.com/ravenleeblack/Seedling/wiki/Data-Types)
-
-[Data Tools](https://github.com/ravenleeblack/Illeshian/wiki/Data-Tools)
