@@ -71,7 +71,7 @@ I am still working out the footer. Right now since I dont do a line by line it a
 ```
 } pass_arg: num_value[0];
 ```
-full:
+full universal label in seedling:
 ```
 universal start:
 {
