@@ -23,6 +23,8 @@ The syntax and keywords in Seedling are derived from Illeshian to streamline the
 
 ## Installation
 
+I use vscode with the wsl2 terminal so that I can use both windows and linux.
+
 To build Seedling from source:
 
 ```bash
@@ -41,5 +43,6 @@ make all
 -b: binary flag - Will eventually have a way to assemble down in to binary so that we can lin with rootling linker. If i ever make it that far.
 
 main.seed yield.seed: Input files for assembly. A seedling file must have the ext .seed
+
 
 
