@@ -8,13 +8,6 @@ For more information check out the wiki!!
 
 ## Overview
 
-Seedling introduces a scope-based structure. It was crafted to align seamlessly with the Illeshian Compiler, ensuring a one-to-one correspondence between scopes in the Illeshian language and the assembler. The supported scopes include:
-
-- Universal Scope
-- Global Scope
-- Global Block Scope
-- Local Scope
-- Local Block Scope
 
 Seedling is one component of the broader **Illesian Suite**, which comprises the following programs:
 - **Illeshian Driver**
