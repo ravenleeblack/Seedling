@@ -12,4 +12,4 @@ For more information check out the wiki!!
 
 [Scope Structure](https://github.com/ravenleeblack/Seedling/wiki/Scope-Structure)
 
-[Syntax Structure](https://github.com/ravenleeblack/Seedling/wiki/Scope-Structure)
+[Syntax Structure](https://github.com/ravenleeblack/Seedling/wiki/Syntax-Structure)
