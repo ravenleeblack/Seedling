@@ -2,6 +2,9 @@
 
 Seedling is an x86-x64 assembler designed specifically for the Illeshian Compiler, part of the Illesian Suite. Unlike traditional assemblers that are section-based, Seedling adopts a unique scope-based approach to assembly programming.
 
+For more information check out the wiki!!
+[Seedling Assembler](https://github.com/ravenleeblack/Illeshian/blob/main/03_comp_source/README.md)
+
 ## Overview
 
 Seedling introduces a scope-based structure. It was crafted to align seamlessly with the Illeshian Compiler, ensuring a one-to-one correspondence between scopes in the Illeshian language and the assembler. The supported scopes include:
