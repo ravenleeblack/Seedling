@@ -21,41 +21,41 @@ SCOPE_LIBDIR = $(LIBDIR)
 
 # Seedling source files
 SEED_SRCS = $(SEED_SRCDIR)/seed_main.c \
-            $(SEED_SRCDIR)/seed_align.c \
-            $(SEED_SRCDIR)/seed_arch.c \
-            $(SEED_SRCDIR)/seed_assign.c \
-            $(SEED_SRCDIR)/seed_arith.c \
-            $(SEED_SRCDIR)/seed_begin_prog.c \
-            $(SEED_SRCDIR)/seed_code.c \
-            $(SEED_SRCDIR)/seed_compare.c \
-            $(SEED_SRCDIR)/seed_common.c \
-            $(SEED_SRCDIR)/seed_call.c \
-            $(SEED_SRCDIR)/seed_nasm_encode.c \
-            $(SEED_SRCDIR)/seed_error.c \
-            $(SEED_SRCDIR)/seed_declare.c \
-            $(SEED_SRCDIR)/seed_global_block.c \
-            $(SEED_SRCDIR)/seed_global.c \
-            $(SEED_SRCDIR)/seed_lex.c \
-            $(SEED_SRCDIR)/seed_literal.c \
-            $(SEED_SRCDIR)/seed_local_block.c \
-            $(SEED_SRCDIR)/seed_local.c \
-            $(SEED_SRCDIR)/seed_log.c \
-            $(SEED_SRCDIR)/seed_file.c \
-            $(SEED_SRCDIR)/seed_match.c \
-            $(SEED_SRCDIR)/seed_opcode.c \
-            $(SEED_SRCDIR)/seed_pad.c \
-            $(SEED_SRCDIR)/seed_phrases.c \
-            $(SEED_SRCDIR)/seed_parse_type.c \
-            $(SEED_SRCDIR)/seed_push.c \
-            $(SEED_SRCDIR)/seed_registers.c \
-            $(SEED_SRCDIR)/seed_section.c \
-            $(SEED_SRCDIR)/seed_system.c \
-            $(SEED_SRCDIR)/seed_universal.c \
-            $(SEED_SRCDIR)/seed_move.c \
-            $(SEED_SRCDIR)/seed_jump.c \
-            $(SEED_SRCDIR)/seed_pass_arg.c \
-            $(SEED_SRCDIR)/seed_set_flag.c \
-            $(SEED_SRCDIR)/color.c
+			$(SEED_SRCDIR)/seed_align.c \
+			$(SEED_SRCDIR)/seed_arch.c \
+			$(SEED_SRCDIR)/seed_assign.c \
+			$(SEED_SRCDIR)/seed_arith.c \
+			$(SEED_SRCDIR)/seed_begin_prog.c \
+			$(SEED_SRCDIR)/seed_code.c \
+			$(SEED_SRCDIR)/seed_compare.c \
+			$(SEED_SRCDIR)/seed_common.c \
+			$(SEED_SRCDIR)/seed_call.c \
+			$(SEED_SRCDIR)/seed_nasm_encode.c \
+			$(SEED_SRCDIR)/seed_error.c \
+			$(SEED_SRCDIR)/seed_declare.c \
+			$(SEED_SRCDIR)/seed_global_block.c \
+			$(SEED_SRCDIR)/seed_global.c \
+			$(SEED_SRCDIR)/seed_lex.c \
+			$(SEED_SRCDIR)/seed_literal.c \
+			$(SEED_SRCDIR)/seed_local_block.c \
+			$(SEED_SRCDIR)/seed_local.c \
+			$(SEED_SRCDIR)/seed_log.c \
+			$(SEED_SRCDIR)/seed_file.c \
+			$(SEED_SRCDIR)/seed_match.c \
+			$(SEED_SRCDIR)/seed_opcode.c \
+			$(SEED_SRCDIR)/seed_pad.c \
+			$(SEED_SRCDIR)/seed_phrases.c \
+			$(SEED_SRCDIR)/seed_parse_type.c \
+			$(SEED_SRCDIR)/seed_push.c \
+			$(SEED_SRCDIR)/seed_registers.c \
+			$(SEED_SRCDIR)/seed_section.c \
+			$(SEED_SRCDIR)/seed_system.c \
+			$(SEED_SRCDIR)/seed_universal.c \
+			$(SEED_SRCDIR)/seed_move.c \
+			$(SEED_SRCDIR)/seed_jump.c \
+			$(SEED_SRCDIR)/seed_pass_arg.c \
+			$(SEED_SRCDIR)/seed_set_flag.c \
+			$(SEED_SRCDIR)/color.c
 
 SEED_OBJS = $(addprefix $(SEED_OBJDIR)/, $(notdir $(SEED_SRCS:.c=.o)))
 SEED_HEADERS = $(wildcard $(SEED_INCLUDEDIR)/*.h)
@@ -107,6 +107,7 @@ $(SCOPE_LIB_SHARED): $(SCOPE_OBJS)
 # Clean rules
 clean: clean_seed clean_scope
 	rm -rf $(OBJDIR) $(LIBDIR) $(BINDIR) $(ROOT_SEED)
+	find . -type f -name "*.asm" -delete
 
 clean_seed:
 	rm -rf $(SEED_OBJDIR) $(SEED_TARGET)

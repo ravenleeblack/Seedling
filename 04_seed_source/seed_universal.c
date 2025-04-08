@@ -16,6 +16,7 @@ int process_universal_label(void)
     scan(&Token);
     colon(_colon, ":");
 
+    
     if((strcmp(Text, "start") == 0))   // strcpy the universal scope label. There has to be a start for entry and can only be one.
     {
         is_entry_point = 1;
@@ -26,6 +27,8 @@ int process_universal_label(void)
     {
        fprintf(stderr, " scope label error: There can only be one universal label and that label must be the start label.\n");
     }
+    
+
 
     return 0;
 }

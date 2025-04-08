@@ -7,7 +7,7 @@
 void reset_file_state(void)
 {
     comp_line_pos = 0;
-    putback_char = '\n';
+    putback_char = 0;
 
     is_main_entry = 0;
 
@@ -247,10 +247,6 @@ int main(int argc, char *argv[])
         {
             nasm_flag = 1;                         //create a nasm output
         }
-        else if(strcmp(argv[i], "-b") == 0)
-        {
-            bin_out = fopen("main.bin", "wb");      //create a binary output 
-        }
         else if (strcmp(argv[i], "-t") == 0) 
         {
             scope_table_flag = 1;
@@ -283,12 +279,6 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        if(debug_flag && debug_table_out)
-        {
-            fprintf(debug_table_out, "==============================================================================================================\n");
-            fprintf(debug_table_out, " Processing: %s\n", file_list->files[i]);
-        }
-
         // Process the source file (begin_prog() writes to the temp files).
         result = begin_prog();
 
@@ -309,7 +299,6 @@ int main(int argc, char *argv[])
        
         close_temp_files();  // Step 6: Flush and close the temp files.
         fclose(seed_in);     // Step 7: Close the source file.
-        fclose(bin_out);     // Step 8: Close the binary output source file.
     }
 
     if (scope_table_flag && scope_table_out) {

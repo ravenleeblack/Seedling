@@ -72,6 +72,7 @@ void process_sections(enum scope_type current_scope)
                 scan(&Token);
                 semicolon(_semicolon, ";");
             }
+            
             return 0;
         }
     }

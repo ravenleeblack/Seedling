@@ -6,30 +6,23 @@
 
 int begin_prog(void)
 {
+    scan(&Token);
+
+    if(Token.token_rep == _universal)
+    {
+        process_universal_label();
+    }
+
     while(1)
     {
         scan(&Token);
 
         if(Token.token_rep == _enfi)
         {
-            if(debug_flag && debug_table_out)
-            {
-                fprintf(debug_table_out, " universal label counters: %d\n", universal_label_counter);
-                fprintf(debug_table_out, " global label counters: %d\n", global_label_counter);
-                fprintf(debug_table_out, " global block label counters: %d\n", global_block_label_counter);
-                fprintf(debug_table_out, " local label counters: %d\n", local_label_counter);
-                fprintf(debug_table_out, " local block label counters: %d\n", local_block_label_counter);
-
-                fprintf(debug_table_out, "==============================================================================================================\n\n");
-            }
             return 0;
         }
-        
-        if(Token.token_rep == _universal)
-        {
-            process_universal_label();
-        }
-        else if(Token.token_rep == _global)
+
+        if(Token.token_rep == _global)
         {
             process_global_label();
         }

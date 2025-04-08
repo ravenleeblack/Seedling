@@ -6,9 +6,10 @@ universal start:
         extern: yield;
     .end
     .code_sect 
-        call main; 
+       call main; 
     .end
 } pass_arg: num_value[0];
+
 
 global main:
 {
@@ -16,19 +17,47 @@ global main:
         hold aisle: msg;
     .end
     .literal_sect
-        assign: msg = "Hello World!", hex_value[0x0A];
+        assign: msg = "Hello, World. Testing strand!",  hex_value[0x0A];
     .end
     .code_sect
-        move_aisle: edx, num_value[13];                
-        move_aisle: ecx, msg;
-        
-        move_aisle: ebx, num_value[1];
-        move_aisle: eax, num_value[4];
+        move_aisle: eax, msg;            
+        call main.strlen;
+
+        move_aisle: edx, eax; 
+        move_aisle: ecx, msg; 
+
+        move_aisle: ebx, num_value[1]; 
+        move_aisle: eax, num_value[4];    
         call_system;
 
-        move_aisle: ebx, num_value[0];
-        move_aisle: eax, num_value[1];
-        call_system;
-
+        call yield;
     .end
-} call yield;
+} pass_arg: num_value[0];
+
+
+local strlen:
+{
+    .code_sect
+        push_aisle: ebx;            
+        move_aisle: ebx, eax;
+    .end
+} pass_arg: num_value[0];
+
+local_block next_char:
+{
+    .code_sect
+        comp_den: address[eax], num_value[0];
+        jump_zero: finished;                   
+        inc_aisle: eax;                      
+        jump: next_char;                       
+    .end
+} pass_arg: num_value[0];
+
+
+local_block finished:
+{
+    .code_sect
+        sub_aisle: eax, ebx; 
+        pop_aisle: ebx;
+    .end
+} pass_arg: ebx;
