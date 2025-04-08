@@ -8,3 +8,5 @@ For more information check out the wiki!!
 
 [How to Compile](https://github.com/ravenleeblack/Seedling/wiki/How-to-Compile)
 
+
+[Command Line Flags](https://github.com/ravenleeblack/Seedling/wiki/Command-Line-Flags)
