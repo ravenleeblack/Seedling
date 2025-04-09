@@ -386,4 +386,8 @@ typedef struct
 
     char *phrase;
     char *phrase_reg_value;
+
+    char *phrase_string_value;          // The string literal, e.g., "World"
+    unsigned long long phrase_hex_values[10]; // Array for multiple hex values
+    int phrase_hex_count;               // Number of hex values in the array
 } phrase_retrievel;

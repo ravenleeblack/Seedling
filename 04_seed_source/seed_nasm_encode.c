@@ -639,12 +639,23 @@ void encode_literal_with_num_section(char *hold_name, char *src, phrase_retrieve
 	fprintf(temp_data, "    %s db \"\\%s\", %d\n", hold_name, src, num_value.phrase_num_value);
 }
 
+/*
+void encode_literal_with_hex_section(char *hold_name, char *src, phrase_retrievel hex_value)
+{
+	fprintf(temp_data, "    %s db \"%s\", 0x%02X\n", hold_name, src, hex_value.phrase_hex_values);  // Use correct NASM format for hex values
+}
+
+*/
 
 void encode_literal_with_hex_section(char *hold_name, char *src, phrase_retrievel hex_value)
 {
-	fprintf(temp_data, "    %s db \"%s\", 0x%02X\n", hold_name, src, hex_value.phrase_hex_value);  // Use correct NASM format for hex values
+    fprintf(temp_data, "    %s db \"%s\"", hold_name, src); // Print the string
+    for (int i = 0; i < hex_value.phrase_hex_count; i++) {
+        // Use %X without padding, but cap at 8-bit values for db
+        fprintf(temp_data, ", 0x%02X", (unsigned char)hex_value.phrase_hex_values[i]);
+    }
+    fprintf(temp_data, "\n"); // End the line
 }
-
 
 void encode_file_section(const char *label_name, const char *label_strand, int length)
 {

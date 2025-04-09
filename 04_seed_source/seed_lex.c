@@ -736,9 +736,9 @@ int scan(struct token *t)
                         switch (hex_size)  // scanhex should have return us a hex_size
                         {
                             case 8:   t->token_rep = _hex_literal_08; t->hex_value_08 = (unsigned int)(hex_value & 0xFF);           break;
-                            case 16:  t->token_rep = _hex_literal_08; t->hex_value_16 = (unsigned int)(hex_value & 0xFFFF);         break;
-                            case 32:  t->token_rep = _hex_literal_08; t->hex_value_32 = (unsigned int)(hex_value & 0xFFFFFFFF);     break;
-                            case 64:  t->token_rep = _hex_literal_08; t->hex_value_64 = (unsigned int)hex_value;                    break;
+                            case 16:  t->token_rep = _hex_literal_16; t->hex_value_16 = (unsigned int)(hex_value & 0xFFFF);         break;
+                            case 32:  t->token_rep = _hex_literal_32; t->hex_value_32 = (unsigned int)(hex_value & 0xFFFFFFFF);     break;
+                            case 64:  t->token_rep = _hex_literal_64; t->hex_value_64 = (unsigned int)hex_value;                    break;
                         }
                         return 1;
                     } 

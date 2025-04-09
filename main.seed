@@ -22,8 +22,8 @@ global main:
         assign: buffer = num_value[32];
     .end
     .literal_sect
-        assign: msg_01 = "Welcome to Seedling!",  hex_value[0x0A];
-        assign: msg_02 = "Its getting there!",  hex_value[0x0A];
+        assign: msg_01 = "Welcome to Seedling!",  hex_value[0x0A, 0x00];
+        assign: msg_02 = "Its getting there!",  hex_value[0x0A, 0x00];
     .end
     .code_sect
         move_aisle: eax, msg_01;            

@@ -83,6 +83,80 @@ phrase_retrievel parse_hex_literal(enum scope_type current_scope, int current_ar
 {
     phrase_retrievel result;
     result.type = phrase_hex;
+    result.phrase_hex_count = 0; // Initialize count
+
+    hex_value(_hex_value, "hex_value"); // Expect "hex_value"
+
+    scan(&Token);
+    lbrace(_lbrace, "["); // Expect "["
+
+    while (1)
+    {
+        scan(&Token); // Get next token
+
+        if (Token.token_rep == _rbrace)
+        {
+            rbrace(_rbrace, "]"); // Validate "]"
+            break; // Done parsing, exit loop
+        }
+
+        // Check for array bounds
+        if (result.phrase_hex_count >= 10)
+        {
+            error("Too many hex values in hex_value list");
+            break;
+        }
+
+        // Parse hex literal and store it
+        switch (Token.token_rep)
+        {
+            case _hex_literal_08:
+                hex_literal(_hex_literal_08, Token.hex_value_08, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_08;
+                break;
+            case _hex_literal_16:
+                hex_literal(_hex_literal_16, Token.hex_value_16, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_16;
+                break;
+            case _hex_literal_32:
+                hex_literal(_hex_literal_32, Token.hex_value_32, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_32;
+                break;
+            case _hex_literal_64:
+                hex_literal(_hex_literal_64, Token.hex_value_64, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_64;
+                break;
+            default:
+                error("Expected a hex literal");
+                return result; // Return what we’ve got so far
+        }
+
+        // After a hex value, expect comma or closing bracket
+        scan(&Token);
+        if (Token.token_rep == _comma)
+        {
+            comma(_comma, ","); // Validate comma, continue parsing
+        }
+        else if (Token.token_rep == _rbrace)
+        {
+            rbrace(_rbrace, "]"); // Validate "]", exit loop
+            break;
+        }
+        else
+        {
+            error("Expected ',' or ']' after hex value");
+            return result;
+        }
+    }
+
+    return result; // Return the fully populated struct
+}
+
+/*
+phrase_retrievel parse_hex_literal(enum scope_type current_scope, int current_architecture)
+{
+    phrase_retrievel result;
+    result.type = phrase_hex;
 
     hex_value(_hex_value, "hex_value");
 
@@ -104,3 +178,5 @@ phrase_retrievel parse_hex_literal(enum scope_type current_scope, int current_ar
 
     return result;
 }
+*/
+
