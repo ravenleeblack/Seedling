@@ -1,7 +1,5 @@
 # Seedling
 
-![9ef80b89-6904-4824-90b6-bbebd82f724e](https://github.com/user-attachments/assets/46dc1165-e6e2-447a-9342-ba6b273e6e0e)
-
 Seedling is an x86-x64 assembler designed specifically for the Illeshian Compiler that is apart of the Illesian Suite.
 
 For more information check out the wiki!!
