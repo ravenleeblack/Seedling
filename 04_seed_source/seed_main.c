@@ -18,6 +18,8 @@ void reset_file_state(void)
 
     seed_in = NULL;
     seed_out = NULL;
+
+    RejCount = 0;
 }
 
 /* Global initialization (called once at startup)*/
@@ -263,9 +265,12 @@ int main(int argc, char *argv[])
         }
     }
 
+    printf("Number of files: %d\n", file_list->count);
     // Process each source file.
     for (int i = 0; i < file_list->count; i++) 
     {
+        printf("File %d: %s\n", i, file_list->files[i]);
+
         reset_file_state();
 
         // Open the temporary files in "w+" mode.
@@ -279,8 +284,16 @@ int main(int argc, char *argv[])
             return 1;
         }
 
+        printf("Calling begin_prog() for %s\n", file_list->files[i]);
+
         // Process the source file (begin_prog() writes to the temp files).
+        RejCount = 0;  // Reset rejection buffer explicitly
+        clearerr(seed_in);  // Clear any EOF/error state
+        rewind(seed_in);    // Ensure we start at the beginning
+
         result = begin_prog();
+        
+        printf("Finished begin_prog() for %s with result %d\n", file_list->files[i], result);
 
         // Build the output filename based on the source file name.
         strncpy(output_filename, file_list->files[i], sizeof(output_filename) - 5);

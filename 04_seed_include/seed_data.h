@@ -108,6 +108,7 @@ extern char extern_file_name[64];
 char manager_call_buffer[64];
 char function_call_buffer[64];
 
+int RejCount;
 
 phrase_retrievel third_index;
 

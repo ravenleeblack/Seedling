@@ -6,13 +6,6 @@
 
 int begin_prog(void)
 {
-    scan(&Token);
-
-    if(Token.token_rep == _universal)
-    {
-        process_universal_label();
-    }
-
     while(1)
     {
         scan(&Token);
@@ -22,7 +15,11 @@ int begin_prog(void)
             return 0;
         }
 
-        if(Token.token_rep == _global)
+        if(Token.token_rep == _universal)
+        {
+            process_universal_label();
+        }
+        else if(Token.token_rep == _global)
         {
             process_global_label();
         }

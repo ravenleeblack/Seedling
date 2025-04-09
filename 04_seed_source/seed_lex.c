@@ -2,6 +2,10 @@
 #include "seed_data.h"   
 #include "seed_decl.h" 
 
+// Add a token buffer to store multiple rejected tokens
+#define MAX_REJECT_TOKENS 8
+struct token RejTokens[MAX_REJECT_TOKENS];
+
 // Return the position of character c in string s, or -1 if c not found
 int chrpos(char *s, int c) 
 {
@@ -24,7 +28,6 @@ int next_ch(void)
 	}
 
 	c = fgetc(seed_in);		// Read from input file
-
 
 	if ('\n' == c)
 	{
@@ -639,10 +642,7 @@ int keyword(char *s)
     return 0;
 }
 
-// Add a token buffer to store multiple rejected tokens
-#define MAX_REJECT_TOKENS 8
-struct token RejTokens[MAX_REJECT_TOKENS];
-int RejCount = 0;
+
 
 // Modified reject_token to handle multiple tokens
 void reject_token(struct token *t) 

@@ -22,6 +22,7 @@ global write:
    .end
 } pass_arg: edx;
 
+
 local strand:
 {
     .code_sect
@@ -46,6 +47,5 @@ local_block finished:
     .code_sect
         sub_aisle: eax, ebx; 
         pop_aisle: ebx;
-        pop_aisle: eax;
     .end
-} pass_arg: eax;
+} pass_arg: ebx;

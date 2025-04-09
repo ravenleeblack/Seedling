@@ -6,6 +6,7 @@ SCOPE TABLE OUTPUT
 |----------------------|-----------------|-----------------|-------|------------|-----|
 | start                | tool_manager    | type_hollow     | 0  | R0:S0:E0 | 1 |
 | yield                | tool_pare       | type_zone_ptr   | 0  | R0:S0:E1 | 1 |
+| write                | tool_pare       | type_zone_ptr   | 0  | R0:S0:E2 | 1 |
 
 === File Scope ===
 | Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
@@ -19,9 +20,12 @@ SCOPE TABLE OUTPUT
 | Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
 |----------------------|-----------------|-----------------|-------|------------|-----|
 | main                 | tool_function   | type_mark       | 3  | R0:S0:E0 | 1 |
-| msg                  | tool_check      | type_aisle      | 3  | R0:S0:E1 | 1 |
-| Hello, World. Testing strand! | tool_else       | type_log        | 3  | R0:S0:E2 | 1 |
-| yield                | tool_function   | type_mark       | 3  | R0:S0:E3 | 1 |
+| msg_01               | tool_check      | type_aisle      | 3  | R0:S0:E1 | 1 |
+| msg_02               | tool_check      | type_aisle      | 3  | R0:S0:E2 | 1 |
+| Welcome to Seedling! | tool_else       | type_log        | 3  | R0:S0:E3 | 1 |
+| Its getting there!   | tool_else       | type_log        | 3  | R0:S0:E4 | 1 |
+| write                | tool_function   | type_mark       | 3  | R0:S0:E5 | 1 |
+| yield                | tool_function   | type_mark       | 3  | R0:S0:E6 | 1 |
 
 === Global Block Scope ===
 | Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
@@ -34,7 +38,7 @@ SCOPE TABLE OUTPUT
 === Local Scope ===
 | Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
 |----------------------|-----------------|-----------------|-------|------------|-----|
-| strlen               | tool_prototype  | type_long       | 6  | R0:S0:E0 | 1 |
+| strand               | tool_prototype  | type_long       | 6  | R0:S0:E0 | 1 |
 
 === Local Block Scope ===
 | Name                 | Tool Type       | Data Type       | Scope | Location | Flg |

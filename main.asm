@@ -1,31 +1,19 @@
 section .data
-    msg db "Hello, World. Testing strand!", 0x0A
+    buffer dd 32
+    msg_01 db "Welcome to Seedling!", 0x0A
+    msg_02 db "Its getting there!", 0x0A
 
 section .text
 global _start
 _start:
     extern yield
+    extern write
     call main
 
 main:
-    mov eax, msg
-    call .strlen
-    mov edx, eax
-    mov ecx, msg
-    mov ebx, 1
-    mov eax, 4
-    int 0x80
+    mov dword [buffer], 32
+    mov eax, msg_01
+    call write
+    mov eax, msg_02
+    call write
     call yield
-
-.strlen:
-    push ebx
-    mov ebx, eax
-next_char:
-    cmp  byte [eax], 0
-    jz  finished
-    inc eax
-    jmp next_char
-finished:
-    sub eax, ebx
-    pop ebx
-    ret

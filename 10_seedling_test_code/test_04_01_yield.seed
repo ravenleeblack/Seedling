@@ -1,8 +1,0 @@
-global yield:
-{
-    .code
-        move_aisle: ebx, num_value[0];
-        move_aisle: eax, num_value[1];
-        call_system;
-    .end
-} pass_arg: num_value[0];
