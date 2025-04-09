@@ -740,7 +740,7 @@ int scan(struct token *t)
                             case 32:  t->token_rep = _hex_literal_08; t->hex_value_32 = (unsigned int)(hex_value & 0xFFFFFFFF);     break;
                             case 64:  t->token_rep = _hex_literal_08; t->hex_value_64 = (unsigned int)hex_value;                    break;
                         }
-                        return 0;
+                        return 1;
                     } 
                     else 
                     {

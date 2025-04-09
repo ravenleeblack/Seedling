@@ -1,0 +1,10 @@
+global read:
+{
+    .code_sect
+        move_aisle: eax, num_value[3];  // sys_read
+        move_aisle: ebx, num_value[0];  // stdin
+        move_aisle: ecx, buffer;        // buffer address
+        move_aisle: edx, num_value[32]; // buffer size
+        call_system;
+    .end
+} pass_arg: eax; // bytes read

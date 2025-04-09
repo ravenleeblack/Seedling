@@ -48,4 +48,4 @@ local_block finished:
         sub_aisle: eax, ebx; 
         pop_aisle: ebx;
     .end
-} pass_arg: ebx;
+} pass_arg: eax;
