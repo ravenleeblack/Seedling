@@ -1,8 +1,11 @@
 # Seedling
 
 Seedling is an x86-x64 assembler designed specifically for the Illeshian Compiler that is apart of the Illesian Suite. 
-The current state of the assembler is that its backend is being translated into nasm, in order for it to be able to assemble, and 
-that allows ld to be able to link it. So it has a nasm backend with hope of a binary backend in the future.
+Seedlings backend is currently being translated into nasm for output, so that it can achieve it goal of assembling, and 
+since it output is nasm, that allows the ld linker to be able to link it into a proper binary executable. Its not the best
+approach but I do have the desire, to make the backend output a proper binary output, with the intel opcode when I understand it
+more fully. For the time being, it still allows me to write and use Seedling, as the backend for Illeshian. Since both Illeshian
+and Seedling both use the new scoping system that I created, this allows Illeshain and Seedling, to have a one to one transition.
 
 [Seedling Home](https://github.com/ravenleeblack/Seedling/wiki)
 
