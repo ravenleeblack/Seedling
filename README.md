@@ -28,8 +28,8 @@ and Seedling both use the new scoping system that I created, this allows Illesha
 - call instruction to labels
 - pass_arg instruction to return
 - call to yield label to exit
-- write to console
-- read to console
+- able to write to console or terminal
+- able to read from console or terminal
 - system call instruction. So it can probably do alot more then I realize.
 - both instruction replaces and instruction
 - set_flag instruction replaces xor instruction
