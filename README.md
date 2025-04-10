@@ -20,16 +20,17 @@ and Seedling both use the new scoping system that I created, this allows Illesha
 [Programming in Seedling](https://github.com/ravenleeblack/Seedling/wiki/Programming-in-Seedling)
 
 ## CURRENTLY IMPLEMENTED:
-- use move instructions 
-- use compare instructions
-- use push and pop instructions
-- use increment and decrement instructions
-- use jump instructions to labels
-- use call instruction to labels
-- use pass_arg to return and yield to exit
+- move instructions 
+- compare instructions
+- push and pop instructions
+- increment and decrement instructions
+- jump instructions to labels
+- call instruction to labels
+- pass_arg instruction to return
+- call to yield label to exit
 - write to console
 - read to console
-- uses system call instruction. So it can probably do alot more then I realize.
+- system call instruction. So it can probably do alot more then I realize.
 
 Currently working on opening, reading, and writing files. 
 Still implementing and trying to figure out what all needs to be implemented. 
