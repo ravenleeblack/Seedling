@@ -31,6 +31,10 @@ and Seedling both use the new scoping system that I created, this allows Illesha
 - write to console
 - read to console
 - system call instruction. So it can probably do alot more then I realize.
+- both instruction replaces and instruction
+- set_flag instruction replaces xor instruction
+- test instruction
+- compare instruction
 
 Currently working on opening, reading, and writing files. 
 Still implementing and trying to figure out what all needs to be implemented. 
