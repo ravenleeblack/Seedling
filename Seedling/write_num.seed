@@ -1,0 +1,75 @@
+global write_num:
+{
+    .declare_sect
+        hold den: buffer;
+        hold den: newline;
+    .end
+    .assign_sect
+       // assign: buffer = num_value[32];
+        load_elem: buffer = elem_value[32];
+    .end
+    .literal_sect
+        assign: new_line = "", hex_value[0x0A, 0x00];
+    .end
+   .code_sect
+        move_aisle: edi, buffer;
+        call convert_int;
+
+        move_aisle: ecx, edi;
+        sub_aisle: ecx, buffer;
+        move_aisle: edx, ecx;
+
+        move_aisle: eax, num_value[4];         //write file system call
+        move_aisle: ebx, num_value[1];            //use file descriptor instead of file
+        move_aisle: ecx, buffer;
+        call_system;
+
+        move_aisle: eax, num_value[4];
+        move_aisle: ebx, num_value[1];            //use file descriptor instead of file
+        move_aisle: ecx, new_line;
+        move_aisle: edx, num_value[1]; 
+        call_system;
+   .end
+} pass_arg: eax;   //return back to main so we can exit with yield
+
+global_block convert_int:
+{
+    .code_sect
+        push_aisle: ebp;
+        move_aisle: ebp, esp;
+        move_aisle: ebx, num_value[10];
+        set_flag: ecx, ecx;
+        call convert_loop;
+        call store_int;
+        move_aisle: esp, ebp;
+        pop_aisle: ebp;       
+    .end
+} pass_arg: eax;
+
+global_block convert_loop:
+{
+    .code_sect
+        set_flag: edx, edx;
+        div_aisle: ebx;
+        add_aisle: dl, mark_value['0'];
+        push_aisle: edx;
+        inc_aisle: ecx;
+        test: eax, eax;
+        jump_not_equal: convert_loop; 
+    .end
+} pass_arg: num_value[0];
+
+global_block store_int:
+{
+    .code_sect
+        pop_aisle: eax;
+        transfer: eax, al;
+        move_aisle: fetch[edi], al; 
+        inc_aisle: edi;
+        dec_aisle: ecx;
+        jump_not_equal: store_int;
+
+        move_aisle: esp, ebp;
+        pop_aisle: ebp;       
+    .end
+} pass_arg: eax;

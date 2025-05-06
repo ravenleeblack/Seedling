@@ -1,0 +1,308 @@
+#include "seed_defs.h"
+#include "seed_data.h"
+#include "seed_decl.h"
+
+/*We try to create re usuable functions as much as possible. So these are the more common function that will used
+thorughout the parsing of the problem.*/
+
+int quick_reg_check() 
+{
+    int reg_size = 0;
+
+    switch(Token.token_rep)
+    { 
+        // 8-bit registers
+        case _al: reg_size = 8; break;
+        case _bl: reg_size = 8; break;
+        case _cl: reg_size = 8; break;
+        case _dl: reg_size = 8; break;
+        case _ah: reg_size = 8; break;
+        case _bh: reg_size = 8; break;
+        case _ch: reg_size = 8; break;
+        case _dh: reg_size = 8; break;
+
+        // 16-bit registers
+        case _ax: reg_size = 16; break;
+        case _bx: reg_size = 16; break;
+        case _cx: reg_size = 16; break;
+        case _dx: reg_size = 16; break;
+        case _si: reg_size = 16; break;
+        case _di: reg_size = 16; break;
+        case _bp: reg_size = 16; break;
+        case _sp: reg_size = 16; break;
+
+        // 32-bit registers
+        case _eax: reg_size = 32; break;
+        case _ebx: reg_size = 32; break;
+        case _ecx: reg_size = 32; break;
+        case _edx: reg_size = 32; break;
+        case _esi: reg_size = 32; break;
+        case _edi: reg_size = 32; break;
+        case _ebp: reg_size = 32; break;
+        case _esp: reg_size = 32; break;
+
+        // 64-bit registers
+        case _rax: reg_size = 64; break;
+        case _rbx: reg_size = 64; break;
+        case _rcx: reg_size = 64; break;
+        case _rdx: reg_size = 64; break;
+        case _rsi: reg_size = 64; break;
+        case _rdi: reg_size = 64; break;
+        case _rbp: reg_size = 64; break;
+        case _rsp: reg_size = 64; break;
+        case _r8:  reg_size = 64; break;
+        case _r9:  reg_size = 64; break;
+        case _r10: reg_size = 64; break;
+        case _r11: reg_size = 64; break;
+        case _r12: reg_size = 64; break;
+        case _r13: reg_size = 64; break;
+        case _r14: reg_size = 64; break;
+        case _r15: reg_size = 64; break;
+
+        default: 
+            reg_size = 0;  // Return 0 for invalid/unknown register
+            break;
+    }
+
+    return reg_size;
+}
+
+phrase_retrievel parse_search_ident(enum scope_type current_scope)
+{
+    phrase_retrievel result;
+    result.type = phrase_ident; // Set the operand type
+
+    ident(_ident, Text);  // Token contains the identifier name in `Text`
+    result.phrase = Text;
+
+    switch (current_scope)
+    {
+        case scope_universal:    search_universal_scope(Text);    break;
+        case scope_global:       search_global_scope(Text);       break;
+        case scope_global_block: search_global_block_scope(Text); break;
+        case scope_local:        search_local_scope(Text);        break;
+        case scope_local_block:  search_local_block_scope(Text);  break;
+        default: error("ident error: invalid ident token"); break;
+    }
+
+    return result;
+}
+
+
+void process_increment_instruction(enum scope_type current_scope) 
+{
+    phrase_retrievel src_index;
+    
+    switch(Token.token_rep)
+    {
+        case _inc_den:     inc_den(_inc_den, "inc_den");          current_architecture = 8;   break;
+        case _inc_dens:    inc_dens(_inc_aisle, "inc_dens");      current_architecture = 8;  break;
+        case _inc_bay:     inc_bay(_inc_bay, "inc_bay");          current_architecture = 16;  break;
+        case _inc_bays:    inc_bays(_inc_bays, "inc_bays");       current_architecture = 16;  break;
+    
+        case _inc_aisle:   inc_aisle(_inc_aisle, "inc_aisle");     current_architecture = 32;   break;
+        case _inc_aisles:  inc_aisles(_inc_aisles, "inc_aisles");  current_architecture = 32;  break;
+        case _inc_zone:    inc_zones(_inc_zone, "inc_zone");       current_architecture = 64;  break;
+        case _inc_zones:   inc_zones(_inc_zones, "inc_zones");     current_architecture = 64;  break;
+        default: break;
+    }
+
+    scan(&Token);
+    colon(_colon, ":");
+
+    scan(&Token);        
+    src_index = get_undetermined_reg();           // Handle destination operand or destination phrase
+    
+    encode_increment_instruction(src_index);
+
+    scan(&Token);
+    semicolon(_semicolon, ";"); 
+}
+
+void process_decrement_instruction(enum scope_type current_scope) 
+{
+    phrase_retrievel src_index;
+    
+    switch(Token.token_rep)
+    {
+        case _dec_den:     dec_den(_dec_den, "dec_den");          current_architecture = 8;   break;
+        case _dec_dens:    dec_dens(_dec_aisle, "dec_dens");      current_architecture = 8;  break;
+        case _dec_bay:     dec_bay(_dec_bay, "dec_bay");          current_architecture = 16;  break;
+        case _dec_bays:    dec_bays(_dec_bays, "dec_bays");       current_architecture = 16;  break;
+    
+        case _dec_aisle:   dec_aisle(_dec_aisle, "dec_aisle");     current_architecture = 32;   break;
+        case _dec_aisles:  dec_aisles(_dec_aisles, "dec_aisles");  current_architecture = 32;  break;
+        case _dec_zone:    dec_zones(_dec_zone, "dec_zone");       current_architecture = 64;  break;
+        case _dec_zones:   dec_zones(_dec_zones, "dec_zones");     current_architecture = 64;  break;
+        default: break;
+    }
+
+    scan(&Token);
+    colon(_colon, ":");
+
+    scan(&Token);        
+    src_index = get_undetermined_reg();           // Handle destination operand or destination phrase
+    
+    encode_decrement_instruction(src_index);
+
+    scan(&Token);
+    semicolon(_semicolon, ";"); 
+}
+
+// Parses a numeric literal and returns a struct phrase containing the value.
+phrase_retrievel parse_num_literal()
+{
+    phrase_retrievel result;
+    result.type = phrase_num;
+
+    num_value(_num_value, "num_value");
+
+    scan(&Token);
+    lbrace(_lbrace, "[");
+
+    scan(&Token);
+    num_literal(_num_literal, Token.num_value);
+    result.phrase_num_value = Token.num_value;
+
+    scan(&Token);
+    rbrace(_rbrace, "]");
+    
+    return result;
+}
+
+phrase_retrievel parse_hex_literal(enum scope_type current_scope, int current_architecture)
+{
+    phrase_retrievel result;
+    result.type = phrase_hex;
+    result.phrase_hex_count = 0; // Initialize count
+
+    hex_value(_hex_value, "hex_value"); // Expect "hex_value"
+
+    scan(&Token);
+    lbrace(_lbrace, "["); // Expect "["
+
+    while (1)
+    {
+        scan(&Token); // Get next token
+
+        if (Token.token_rep == _rbrace)
+        {
+            rbrace(_rbrace, "]"); // Validate "]"
+            break; // Done parsing, exit loop
+        }
+
+        // Check for array bounds
+        if (result.phrase_hex_count >= 10)
+        {
+            error("Too many hex values in hex_value list");
+            break;
+        }
+
+        // Parse hex literal and store it
+        switch (Token.token_rep)
+        {
+            case _hex_literal_08:
+                hex_literal(_hex_literal_08, Token.hex_value_08, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_08;
+                break;
+            case _hex_literal_16:
+                hex_literal(_hex_literal_16, Token.hex_value_16, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_16;
+                break;
+            case _hex_literal_32:
+                hex_literal(_hex_literal_32, Token.hex_value_32, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_32;
+                break;
+            case _hex_literal_64:
+                hex_literal(_hex_literal_64, Token.hex_value_64, current_architecture);
+                result.phrase_hex_values[result.phrase_hex_count++] = Token.hex_value_64;
+                break;
+            default:
+                error("Expected a hex literal");
+                return result; // Return what we’ve got so far
+        }
+
+        if (result.phrase_hex_count == 1) 
+        result.phrase_hex_value = (int)result.phrase_hex_values[0];
+        
+        // After a hex value, expect comma or closing bracket
+        scan(&Token);
+        if (Token.token_rep == _comma)
+        {
+            comma(_comma, ","); // Validate comma, continue parsing
+        }
+        else if (Token.token_rep == _rbrace)
+        {
+            rbrace(_rbrace, "]"); // Validate "]", exit loop
+            break;
+        }
+        else
+        {
+            error("Expected ',' or ']' after hex value");
+            return result;
+        }
+    }
+
+    return result; // Return the fully populated struct
+}
+
+phrase_retrievel parse_mark_literal()
+{
+    phrase_retrievel result = {0};  // Initialize all fields to 0
+    result.type = phrase_mark;
+
+    mark_value(_mark_value, "mark_value");
+
+    scan(&Token);
+    lbrace(_lbrace, "[");
+
+    scan(&Token);
+    mark_literal(_mark_literal, Token.mark_value);
+    // Copy the full string into phrase_mark_buffer
+    strncpy(result.phrase_mark_buffer, Token.mark_value, sizeof(result.phrase_mark_buffer) - 1);
+    result.phrase_mark_buffer[sizeof(result.phrase_mark_buffer) - 1] = '\0';  // Ensure null-termination
+    
+    result.phrase_mark_value = result.phrase_mark_buffer;
+
+    scan(&Token);
+    rbrace(_rbrace, "]");
+    
+    return result;
+}
+
+phrase_retrievel parse_elem_literal(enum scope_type current_scope, int current_arch)
+{
+    phrase_retrievel result;
+    result.type = phrase_table; // Set the operand type
+
+    elem_value(_elem_value, "elem_value");
+
+    scan(&Token);
+    lbrace(_lbrace, "[");
+
+
+    while(1)
+    {
+        scan(&Token);
+
+        if(Token.token_rep == _rbrace)
+        {
+            rbrace(_rbrace, "]");
+            break;
+        }
+        if(Token.token_rep == _comma)
+        {
+            comma(_comma, ",");
+            continue;
+        }
+        else
+        {
+            num_literal(_num_literal, Token.num_value);
+            result.phrase_num_value = Token.num_value;
+        }
+    }
+
+    return result;  // Return the populated address phrase
+}
+
+

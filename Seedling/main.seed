@@ -1,0 +1,69 @@
+universal start:
+{
+    .arch_32 .end
+    .log_sect
+        log person:
+            offset aisle: age = num_value[18];
+            offset aisle: height = num_value[6];
+        end_log;
+    .end
+    .list_sect
+        list colors:
+           index aisle: red = num_value[0];
+           index aisle: green = num_value[1];
+           index aisle: blue = num_value[2];
+        end_list;
+    .end
+    .file_sect
+        extern: yield;
+        extern: write;
+        extern: write_num;
+    .end
+    .code_sect 
+       call main; 
+    .end
+};
+
+
+global main:
+{
+    .declare_sect
+        hold aisle: a;
+        hold aisle: b;
+        hold aisle: sum;
+    .end
+    .assign_sect
+        assign: a = num_value[42];
+        assign: b = num_value[32];
+        assign: sum = num_value[0];
+    .end
+    .literal_sect
+        assign: msg = "hello world", hex_value[0x0A, 0x00];
+    .end
+    .code_sect
+        move_aisle: eax, fetch[a];
+        add_aisle: eax, fetch[b];
+        move_aisle: fetch[sum], eax;
+
+        move_aisle: eax, fetch[sum];    
+        call write_num;
+
+        move_aisle: eax, msg;
+        call write;
+
+        move_aisle: eax, fetch[person + 0]; // Fetch age from person struct
+        call write_num;
+
+        move_aisle: eax, fetch[person + 2]; // Fetch height from person struct
+        call write_num;
+        
+        move_aisle: eax, red; // Fetch red enum value
+        call write_num;
+
+        move_aisle: eax, green; // Fetch green enum value
+        call write_num;
+
+        move_aisle: eax, blue; // Fetch blue enum value
+        call write_num;
+    .end
+} call yield;

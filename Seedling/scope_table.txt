@@ -1,0 +1,63 @@
+SCOPE TABLE OUTPUT
+==================
+
+=== Universal Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+| start                | tool_manager    | type_hollow     | 0  | R0:S0:E0 | 1 |
+| yield                | tool_pare       | type_zone_ptr   | 0  | R0:S0:E1 | 1 |
+| write                | tool_pare       | type_zone_ptr   | 0  | R0:S0:E2 | 1 |
+| write_num            | tool_pare       | type_zone_ptr   | 0  | R0:S0:E3 | 1 |
+
+=== File Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+
+=== Global Parameter Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+
+=== Global Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+| main                 | tool_function   | type_mark       | 3  | R0:S0:E0 | 1 |
+| a                    | tool_check      | type_aisle      | 3  | R0:S0:E1 | 1 |
+| b                    | tool_check      | type_aisle      | 3  | R0:S0:E2 | 1 |
+| sum                  | tool_check      | type_aisle      | 3  | R0:S0:E3 | 1 |
+| hello world          | tool_else       | type_log        | 3  | R0:S0:E4 | 1 |
+| write                | tool_function   | type_mark       | 3  | R0:S0:E5 | 1 |
+| write_num            | tool_function   | type_mark       | 3  | R0:S0:E6 | 1 |
+| buffer               | tool_check      | type_den        | 3  | R0:S0:E7 | 1 |
+| newline              | tool_check      | type_den        | 3  | R0:S0:E8 | 1 |
+|                      | tool_else       | type_log        | 3  | R0:S0:E9 | 1 |
+| yield                | tool_function   | type_mark       | 3  | R0:S0:E10 | 1 |
+
+=== Global Block Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+| convert_int          | tool_call       | type_num        | 4  | R0:S0:E0 | 1 |
+| convert_loop         | tool_call       | type_num        | 4  | R0:S0:E1 | 1 |
+| store_int            | tool_call       | type_num        | 4  | R0:S0:E2 | 1 |
+| convert_loop         | tool_strand     | type_tripare    | 4  | R0:S1:E1 | 1 |
+| store_int            | tool_strand     | type_tripare    | 4  | R0:S1:E2 | 1 |
+
+=== Local Parameter Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+
+=== Local Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+| strand               | tool_prototype  | type_long       | 6  | R0:S0:E0 | 1 |
+
+=== Local Block Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
+| next_char            | tool_manager_param | type_deci       | 7  | R0:S0:E0 | 1 |
+| finished             | tool_strand     | type_tripare    | 7  | R0:S0:E1 | 1 |
+| next_char            | tool_strand     | type_tripare    | 7  | R0:S1:E0 | 1 |
+| finished             | tool_manager_param | type_deci       | 7  | R0:S1:E1 | 1 |
+
+=== Block Scope ===
+| Name                 | Tool Type       | Data Type       | Scope | Location | Flg |
+|----------------------|-----------------|-----------------|-------|------------|-----|
