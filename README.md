@@ -31,13 +31,18 @@ and Seedling both use the new scoping system that I created, this allows Illesha
 - able to write to console or terminal
 - able to read from console or terminal
 - system call instruction. So it can probably do alot more then I realize.
-- both instruction replaces and instruction
+- the both instruction replaces the and instruction
 - set_flag instruction replaces xor instruction
 - test instruction
 - compare instruction
+- add, sub, mul, div
+- fetch and addess keywords are dedicated deference and address instructions.
+- transfer for movzx
+- currently can create arrays and assembler version of enum and struct
+- prints strings
+- prints numbers
 
-Currently working on opening, reading, and writing files. 
-Still implementing and trying to figure out what all needs to be implemented. 
+Has enough of it being translated that it can open and write to a file.
 
 ## TODO LIST:
 - create a backend for Seedling that outputs binary.
